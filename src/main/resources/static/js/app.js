@@ -1,4 +1,4 @@
-const API = 'http://localhost:8080';
+const API = '';
 let token = null, currentUser = null, allTasks = [], editingTaskId = null, currentFilter = 'all';
 
 // ---------- AUTH ----------
