@@ -1,7 +1,6 @@
 package com.smartplan.security;
 
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -21,7 +20,7 @@ public class JwtUtil {
             .subject(email)
             .issuedAt(new Date())
             .expiration(new Date(System.currentTimeMillis() + jwtExpiration))
-            .signWith(Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8)), SignatureAlgorithm.HS256)
+            .signWith(Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8)), Jwts.SIG.HS256)
             .compact();
     }
     

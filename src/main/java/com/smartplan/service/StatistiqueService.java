@@ -8,6 +8,7 @@ import com.smartplan.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.temporal.WeekFields;
 import java.util.List;
@@ -35,7 +36,7 @@ public class StatistiqueService {
         long totalCount = taskRepository.findByUserAndStatut(user, Task.Statut.A_FAIRE).size() + completedCount;
         
         BigDecimal completionRate = totalCount > 0 
-            ? BigDecimal.valueOf((completedCount * 100.0) / totalCount).setScale(2, BigDecimal.ROUND_HALF_UP)
+            ? BigDecimal.valueOf((completedCount * 100.0) / totalCount).setScale(2, RoundingMode.HALF_UP)
             : BigDecimal.ZERO;
         
         Statistique stat = new Statistique();
